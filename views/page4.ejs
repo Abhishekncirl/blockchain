@@ -1,38 +1,112 @@
-<%- include partials/header.ejs %>
-
 <!doctype html>
+<%- include partials/header.ejs %>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/css/ol.css" type="text/css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Data Display</title>
     <style>
-      .map {
-        height: 600px;
-        width: 100%;
-      }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            padding: 12px;
+            text-align: left;
+            font-family: Arial, sans-serif;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            color: #333333;
+            text-transform: uppercase;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #e2e2e2;
+        }
+        #container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333333;
+        }
     </style>
-    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script>
-    <title>OpenLayers example</title>
-  </head>
-  <body>
-    <h2>Come Find Us</h2>
-    <div id="map" class="map"></div>
-    <script type="text/javascript">
-      var map = new ol.Map({
-        target: 'map',
-        layers: [
-          new ol.layer.Tile({
-            source: new ol.source.OSM()
-          })
-        ],
-        view: new ol.View({
-          center: ol.proj.fromLonLat([37.41, 8.82]),
-          zoom: 4
-        })
-      });
+</head>
+<body>
+    <div id="container">
+        <h1>Top 50 Cryptocurrencies</h1>
+        <table id="dynamicTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price (USD)</th>
+                </tr>
+            </thead>
+            <tbody id="dynamicTableBody">
+            </tbody>
+        </table>
+    </div>
+ 
+    <script>
+        const func = async () => {
+            const url = 'https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&tiers%5B0%5D=1&orderBy=marketCap&orderDirection=desc&limit=50&offset=0';
+            const options = {
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': '8b7068f6d0mshe2595ecf881d873p19f0ddjsn99dd59d869e6',
+                    'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
+                }
+            };
+           
+            try {
+                const response = await fetch(url, options);
+                const result = await response.json();
+ 
+                function displayDynamicData() {
+                    const dynamicTableBody = document.getElementById('dynamicTableBody');
+                    dynamicTableBody.innerHTML = '';
+                    const coinsArray = result.data.coins;
+                    coinsArray.forEach(item => {
+                        const row = document.createElement('tr');
+                        const nameCell = document.createElement('td');
+                        nameCell.textContent = item.name;
+                        row.appendChild(nameCell);
+                        const priceCell = document.createElement('td');
+                        priceCell.textContent = `$${item.price}`;
+                        row.appendChild(priceCell);
+                        dynamicTableBody.appendChild(row);
+                    });
+                }
+                displayDynamicData();
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        func();
     </script>
-  </body>
+</body>
 </html>
-
 
 <%- include partials/footer.ejs %>

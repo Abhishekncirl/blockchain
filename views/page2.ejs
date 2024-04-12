@@ -1,11 +1,25 @@
 <%- include partials/header.ejs %>
 
 <body onload="connectMetamask()">
-    <div id="readArea"> <!--Connecting to MetaMask -->
-        <a class="btn btn-success" onclick="connectMetamask()">CONNECT TO METAMASK</button>
-        <p id="userArea">Status: Not connected to Metamask</p>
-         <!-- index html to meta-->
-    </div>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-6 offset-md-3">
+                <div id="readArea" class="text-center">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/MetaMask_Fox.svg/1200px-MetaMask_Fox.svg.png" alt="MetaMask Logo" style="width: 100px; height: 100px;">
+                    <h2 class="mt-3">Connected to MetaMask</h2>
+                    <p id="userArea" class="mt-3 text-muted">Status: Not connected to MetaMask</p>
+                </div>
+            </div>
+        </div>
+    <div class="container">
+        <form action="/" method="post">
+          <div class="form-group">
+            <label for="name">Enter the vegitable Name</label>
+            <input type="text" class="form-control" name="name" placeholder="Enter Your Name">
+          </div>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+      </div>
 </body>
 
 
