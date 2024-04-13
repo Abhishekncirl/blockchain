@@ -59,19 +59,19 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="shop-cat-box">
-                        <img class="img-fluid" src="images/categories_img_01.jpg" alt="" />
+                        <img class="img-fluid" src="images/big-img-02.jpg" alt="" />
                         <button onclick="depositContract()">Buy now</button><br>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="shop-cat-box">
-                        <img class="img-fluid" src="images/categories_img_02.jpg" alt="" />
+                        <img class="img-fluid" src="images/big-img-03.jpg" alt="" />
                         <button onclick="depositContract()">Buy now</button><br> 
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="shop-cat-box">
-                        <img class="img-fluid" src="images/categories_img_03.jpg" alt="" />
+                        <img class="img-fluid" src="images/big-img-01.jpg" alt="" />
                         <button onclick="depositContract()">Buy now</button><br>
                     </div>
                 </div>  
@@ -181,5 +181,37 @@
             await window.contract.methods.deposit().send({from: account, value: 1});
         }
 </script>
+
+<style>
+    /* Style for the button */
+    .shop-cat-box button {
+        width: 100%; /* Set button width to 100% */
+        background-color: #4CAF50; /* Green background */
+        border: none; /* Remove borders */
+        color: white; /* White text */
+        padding: 10px 20px; /* Padding */
+        text-align: center; /* Center text */
+        text-decoration: none; /* Remove underline */
+        display: inline-block; /* Make inline */
+        font-size: 16px; /* Font size */
+        margin-bottom: 10px; /* Add margin below the button */
+        transition-duration: 0.4s; /* Transition duration */
+        cursor: pointer; /* Cursor on hover */
+        border-radius: 5px; /* Rounded corners */
+    }
+
+    /* Change background color on hover */
+    .shop-cat-box button:hover {
+        background-color: #45a049;
+    }
+</style>
+<style>
+    /* Style for the images */
+    .shop-cat-box img {
+        width: 100%; /* Ensure images fill their containers */
+        height: auto; /* Maintain aspect ratio */
+        display: block; /* Prevent any extra space below the images */
+    }
+</style>
 
 <%- include partials/footer.ejs %>

@@ -1,6 +1,6 @@
 <%- include partials/header.ejs %>
 
-<body onload="connectMetamask()">
+<body onload="connectMetamask(),connectContract()">
     <div class="container">
         <div class="row mt-5">
             <div class="col-md-6 offset-md-3">
@@ -15,9 +15,10 @@
         <form action="/" method="post">
           <div class="form-group">
             <label for="name">Enter the vegitable Name</label>
-            <input type="text" class="form-control" name="name" placeholder="Enter Your Name">
+            <input type="text" class="form-control" id="vegInput" name="name" placeholder="Enter Your Name">
           </div>
-          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="submit" class="btn btn-success" onclick="addVegetable()">Submit</button>
+          <div id="showVegi"></div>
         </form>
       </div>
 </body>
@@ -33,4 +34,63 @@
             document.getElementById("userArea").innerHTML = `User Account: ${account}`;
         }
     }
+
+    const connectContract = async () => {
+            const ABI = [
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "Election",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_name",
+				"type": "string"
+			}
+		],
+		"name": "setCandidate",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "vegi",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+            
+            const Address = "0xf765B834663b93B2db00Eb31cD99C3eE2eE4d6d4"; // Taking Address from Remix 
+            window.web3 = await new Web3(window.ethereum);
+            window.contract = await new window.web3.eth.Contract(ABI, Address);
+            document.getElementById("contractArea").innerHTML = "Connected to Contract"; // calling the elementID above
+        }
+
+        const addVegetable = async () => {
+            const vegi = document.getElementById("vegInput").value;
+            await window.contract.methods.setVegitable(vegi).send({from: account});
+        }
+        const getVegetable = async () => {
+            const vegi = await window.contract.methods.getVegitable().call();
+            document.getElementById("showVegi").innerHTML = `${vegi}`;
+
+        }
+</script>
+
 </script>
