@@ -29,11 +29,6 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
 
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
 
 <body onload="connectMetamask(),connectContract()">
@@ -170,10 +165,10 @@
 	}
 ]
             
-            const Address = "0xeb3129d0c87eb1f3ca978699cdc1e18a413335e3"; // Taking Address from Remix 
+            const Address = "0xeb3129d0c87eb1f3ca978699cdc1e18a413335e3"; 
             window.web3 = await new Web3(window.ethereum);
             window.contract = await new window.web3.eth.Contract(ABI, Address);
-            document.getElementById("contractArea").innerHTML = "Connected to Contract"; // calling the elementID above
+            document.getElementById("contractArea").innerHTML = "Connected to Contract"; 
         }
 
  const depositContract = async () => {
@@ -183,34 +178,34 @@
 </script>
 
 <style>
-    /* Style for the button */
+   
     .shop-cat-box button {
-        width: 100%; /* Set button width to 100% */
-        background-color: #4CAF50; /* Green background */
-        border: none; /* Remove borders */
-        color: white; /* White text */
-        padding: 10px 20px; /* Padding */
-        text-align: center; /* Center text */
-        text-decoration: none; /* Remove underline */
-        display: inline-block; /* Make inline */
-        font-size: 16px; /* Font size */
-        margin-bottom: 10px; /* Add margin below the button */
-        transition-duration: 0.4s; /* Transition duration */
-        cursor: pointer; /* Cursor on hover */
-        border-radius: 5px; /* Rounded corners */
+        width: 100%;
+        background-color: #4CAF50; 
+        border: none; 
+        color: white; 
+        padding: 10px 20px;
+        text-align: center; 
+        text-decoration: none; 
+        display: inline-block; 
+        font-size: 16px;
+        margin-bottom: 10px; 
+        transition-duration: 0.4s; 
+        cursor: pointer; 
+        border-radius: 5px; 
     }
 
-    /* Change background color on hover */
+   
     .shop-cat-box button:hover {
         background-color: #45a049;
     }
 </style>
 <style>
-    /* Style for the images */
+   
     .shop-cat-box img {
-        width: 100%; /* Ensure images fill their containers */
-        height: auto; /* Maintain aspect ratio */
-        display: block; /* Prevent any extra space below the images */
+        width: 100%; 
+        height: auto; 
+        display: block;
     }
 </style>
 

@@ -14,7 +14,7 @@
     <div class="container">
         <form action="/" method="post">
           <div class="form-group">
-            <label for="name">Enter the vegitable Name</label>
+            <label for="name">Enter the vegetable Name</label>
             <input type="text" id="vegInput"class="form-control" name="name" placeholder="Enter Your Name">
         </div>
         
@@ -94,7 +94,7 @@
         }
         const getVegetable = async () => {
             const vegi = await window.contract.methods.getVegitable().call();
-            document.getElementById("showVegi").innerHTML = `Added vegitable name: ${vegi}`;
+            document.getElementById("showVegi").innerHTML = `Added vegetable name: ${vegi}`;
 
         }
 </script>
